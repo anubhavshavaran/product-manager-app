@@ -1,7 +1,7 @@
 import { dataTagSymbol } from "@tanstack/react-query";
 import axiosInstance from "./axiosInstance";
 
-export async function getAllProducts() {
+export async function getAllProductsApi() {
     const { data, status } = await axiosInstance.request({
         url: '/products/',
         method: 'get'
@@ -12,7 +12,7 @@ export async function getAllProducts() {
     return data;
 }
 
-export async function getProduct(slug: string) {
+export async function getProductApi(slug: string) {
     const { data, status } = await axiosInstance.request({
         url: `/products/${slug}`,
         method: 'get'
@@ -23,7 +23,7 @@ export async function getProduct(slug: string) {
     return data;
 }
 
-export async function createProduct(
+export async function createProductApi(
     productName: string,
     brand: string,
     type: string,

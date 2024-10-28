@@ -1,13 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, StatusBar, Text, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router'
+import { useQuery } from '@tanstack/react-query';
+import { getProductApi } from '@/src/services/productApi';
+import ProductDetails from '@/src/components/ProductDetails';
 
 export default function Product() {
     const { product } = useLocalSearchParams();
 
+    const { data, isLoading, isSuccess } = useQuery({
+        queryKey: ['product', product],
+        queryFn: () => getProductApi(String(product))
+    });
+
     return (
-        <View className=''>
-            <Text>{product}</Text>
-        </View>
+        <>
+            <View className='w-full h-full bg-indigo p-6 pt-16'>
+                {
+                    isLoading && <ActivityIndicator size='large' />
+                }
+
+                {
+                    isSuccess && <ProductDetails product={data.data.product} />
+                }
+            </View>
+
+            <StatusBar barStyle='light-content' />
+        </>
     );
 }
