@@ -1,11 +1,12 @@
-import { Link } from 'expo-router';
-import React from 'react';
+import { Link, useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import Input from '@/src/components/Input';
 import Button from '@/src/components/Button';
 import { useMutation } from '@tanstack/react-query';
 import { signinApi } from '@/src/services/authApi';
+import { saveToken } from '@/src/hooks/useToken';
 
 type FormData = {
     email: string,
@@ -13,6 +14,8 @@ type FormData = {
 }
 
 export default function Signin() {
+    const router = useRouter();
+
     const { mutate, data, isPending, isError, error, isSuccess } = useMutation({
         mutationKey: ['signin'],
         mutationFn: ({ email, password }: FormData) => signinApi(email, password)
@@ -32,9 +35,13 @@ export default function Signin() {
         mutate({ email, password });
     }
 
-    if (isSuccess) {
-        console.log(data);
-    }
+    useEffect(() => {
+        if (isSuccess) {
+            saveToken(data.data.token).then(() => {
+                router.push('/(products)/');
+            });
+        }
+    }, [isSuccess]);
 
     return (
         <>

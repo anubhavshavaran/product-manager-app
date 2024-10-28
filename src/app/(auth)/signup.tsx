@@ -1,9 +1,10 @@
 import Button from '@/src/components/Button';
 import Input from '@/src/components/Input';
+import { saveToken } from '@/src/hooks/useToken';
 import { signupApi } from '@/src/services/authApi';
 import { useMutation } from '@tanstack/react-query';
-import { Link } from 'expo-router';
-import React from 'react';
+import { Link, useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { StatusBar, Text, View } from 'react-native';
 
@@ -14,6 +15,8 @@ type FormData = {
 }
 
 export default function SignupPage() {
+    const router = useRouter();
+
     const { mutate, data, isPending, isError, isSuccess, error } = useMutation({
         mutationKey: ['signup'],
         mutationFn: ({ fullname, email, password }: FormData) => signupApi(fullname, email, password)
@@ -32,9 +35,13 @@ export default function SignupPage() {
         mutate({ fullname, email, password });
     }
 
-    if (isSuccess) {
-        console.log(data);
-    }
+    useEffect(() => {
+        if (isSuccess) {
+            saveToken(data.data.token).then(() => {
+                router.push('/(products)/');
+            });
+        }
+    }, [isSuccess]);
 
     return (
         <>

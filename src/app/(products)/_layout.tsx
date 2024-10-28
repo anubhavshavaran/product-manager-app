@@ -1,7 +1,8 @@
-import React from 'react'
+import { Slot } from 'expo-router';
+import React from 'react';
 
 export default function ProductsLayout() {
   return (
-    <div>ProductsLayout</div>
-  )
+    <Slot />
+  );
 }
