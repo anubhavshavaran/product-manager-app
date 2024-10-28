@@ -16,6 +16,7 @@ export default function Product() {
     return (
         <>
             <View className='w-full h-full bg-indigo p-6 pt-16'>
+                <Text className='text-2xl text-white font-bold mb-4'>Product Details</Text>
                 {
                     isLoading && <ActivityIndicator size='large' />
                 }
