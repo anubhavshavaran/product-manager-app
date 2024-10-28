@@ -1,5 +1,7 @@
 import Button from '@/src/components/Button';
 import Input from '@/src/components/Input';
+import { signupApi } from '@/src/services/authApi';
+import { useMutation } from '@tanstack/react-query';
 import { Link } from 'expo-router';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
@@ -12,6 +14,11 @@ type FormData = {
 }
 
 export default function SignupPage() {
+    const { mutate, data, isPending, isError, isSuccess, error } = useMutation({
+        mutationKey: ['signup'],
+        mutationFn: ({ fullname, email, password }: FormData) => signupApi(fullname, email, password)
+    });
+
     const { control, handleSubmit, formState: { errors }, getValues } = useForm<FormData>({
         defaultValues: {
             fullname: '',
@@ -22,7 +29,11 @@ export default function SignupPage() {
 
     function handleSignup() {
         const { fullname, email, password } = getValues();
-        console.log(fullname, email, password);
+        mutate({ fullname, email, password });
+    }
+
+    if (isSuccess) {
+        console.log(data);
     }
 
     return (
@@ -106,11 +117,16 @@ export default function SignupPage() {
 
                     <Button
                         label='Sign up'
-                        disabled={false}
-                        isLoading={false}
+                        disabled={isPending}
+                        isLoading={isPending}
                         onClick={handleSubmit(handleSignup)}
                     />
 
+                    {
+                        isError && (
+                            <Text className='w-full my-4 text-center text-red-500 text-lg font-medium'>{error.message}</Text>
+                        )
+                    }
                 </View>
 
                 <View className='w-full flex-row items-center justify-center mt-4'>

@@ -1,9 +1,11 @@
 import { Link } from 'expo-router';
-import React from 'react'
+import React from 'react';
 import { StatusBar, Text, View } from 'react-native';
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form';
 import Input from '@/src/components/Input';
 import Button from '@/src/components/Button';
+import { useMutation } from '@tanstack/react-query';
+import { signinApi } from '@/src/services/authApi';
 
 type FormData = {
     email: string,
@@ -11,6 +13,11 @@ type FormData = {
 }
 
 export default function Signin() {
+    const { mutate, data, isPending, isError, error, isSuccess } = useMutation({
+        mutationKey: ['signin'],
+        mutationFn: ({ email, password }: FormData) => signinApi(email, password)
+    });
+
     const { control, handleSubmit, formState: { errors }, getValues } = useForm<FormData>({
         defaultValues: {
             email: '',
@@ -21,6 +28,12 @@ export default function Signin() {
     function siginUser() {
         const { email, password } = getValues();
         console.log(email, password);
+
+        mutate({ email, password });
+    }
+
+    if (isSuccess) {
+        console.log(data);
     }
 
     return (
@@ -82,10 +95,16 @@ export default function Signin() {
 
                     <Button
                         label='Sign in'
-                        disabled={false}
-                        isLoading={false}
+                        disabled={isPending}
+                        isLoading={isPending}
                         onClick={handleSubmit(siginUser)}
                     />
+
+                    {
+                        isError && (
+                            <Text className='w-full my-4 text-center text-red-500 text-lg font-medium'>{error.message}</Text>
+                        )
+                    }
                 </View>
 
                 <View className='w-full flex-row items-center justify-center mt-4'>
