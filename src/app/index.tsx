@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { getToken } from '../hooks/useToken';
 import { useRouter } from 'expo-router';
 
@@ -9,9 +9,9 @@ export default function index() {
         async function authenticate() {
             const token = await getToken();
             if (token) {
-                router.push('/(products)/');
+                router.replace('/(products)/');
             } else {
-                router.push('/(auth)/signin');
+                router.replace('/(auth)/signin');
             }
         }
 

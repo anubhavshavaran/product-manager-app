@@ -11,9 +11,7 @@ export async function signupApi(fullname: string, email: string, password: strin
         }
     });
 
-    if (status.toString().startsWith('4')) {
-        throw new Error(data?.message);
-    }
+    if (status.toString().startsWith('4')) throw new Error(data?.message);
 
     return data;
 }
@@ -28,9 +26,7 @@ export async function signinApi(email: string, password: string) {
         }
     });
 
-    if (status.toString().startsWith('4')) {
-        throw new Error(data?.message);
-    }
+    if (status.toString().startsWith('4')) throw new Error(data?.message);
 
     return data;
 }
