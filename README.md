@@ -1,50 +1,72 @@
-# Welcome to your Expo app 👋
+# My Expo React Native App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a mobile application built using [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/). The app was developed as part of an internship assignment and includes features like [mention key features briefly, e.g., authentication, fetching data from an API, etc.].
 
-## Get started
+## Table of Contents
 
-1. Install dependencies
+- [Requirements](#requirements)
+- [Setup Instructions](#setup-instructions)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Folder Structure](#folder-structure)
+- [Additional Resources](#additional-resources)
+
+---
+
+## Requirements
+
+Make sure you have the following installed on your machine:
+
+- **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
+- **Expo CLI** - Install globally with `npm install -g expo-cli`
+- **Git** - [Download](https://git-scm.com/)
+
+If you're using a physical device for testing, download the **Expo Go** app from the [Apple App Store](https://apps.apple.com/app/expo-go/id982107779) or [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent).
+
+## Setup Instructions
+
+Follow these steps to set up and run the app on your local environment:
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. **Install Dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Start the Expo Server**
 
    ```bash
-    npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run the App**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **On Physical Device:** Scan the QR code displayed in the Expo Developer Tools/CLI with the Expo Go app.
+- **On Emulator/Simulator:** Choose Run on Android device/emulator or Run on iOS simulator from the Expo Developer Tools.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Technologies used
 
-## Get a fresh project
+1. **Core Technologies**
+   - **Expo** (`expo`): A framework and platform for universal React applications.
+   - **React Native** (`react-native`): A framework for building native apps using React.
+   - **React** (`react`): JavaScript library for building user interfaces.
 
-When you're ready, run:
+2. **Navigation**
+   - **Expo Router** (`expo-router`): A file-based routing solution optimized for Expo projects.
 
-```bash
-npm run reset-project
-```
+3. **Data Handling & State Management**
+   - **React Query** (`@tanstack/react-query`): Manages server-state data (fetching, caching, synchronizing).
+   - **Axios** (`axios`): A promise-based HTTP client for making API requests.
+   - **React Hook Form** (`react-hook-form`): A library for managing forms in React with a focus on performance.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+4. **Styling & UI Components**
+   - **Tailwind CSS** (`tailwindcss`): A utility-first CSS framework for rapid UI development.
+   - **NativeWind** (`nativewind`): Tailwind CSS for React Native, enabling a similar development experience in mobile apps.
+   - **Expo Vector Icons** (`@expo/vector-icons`): Provides customizable icons commonly used in mobile apps.
