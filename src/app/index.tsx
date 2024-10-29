@@ -8,7 +8,7 @@ export default function index() {
     useEffect(() => {
         async function authenticate() {
             const token = await getToken();
-            if (token) {
+            if (token != null) {
                 router.replace('/(products)/');
             } else {
                 router.replace('/(auth)/signin');
