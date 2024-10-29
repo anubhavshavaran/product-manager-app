@@ -8,9 +8,6 @@ This is a mobile application built using [React Native](https://reactnative.dev/
 - [Setup Instructions](#setup-instructions)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Folder Structure](#folder-structure)
-- [Additional Resources](#additional-resources)
-
 ---
 
 ## Requirements
