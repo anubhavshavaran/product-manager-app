@@ -46,9 +46,17 @@ Follow these steps to set up and run the app on your local environment:
    npm start
    ```
 
-4. **Run the App**
+4. **Update the Environment Variable**
 
-- **On Physical Device:** Scan the QR code displayed in the Expo Developer Tools/CLI with the Expo Go app.
+- Go to the ./constants/ENV.ts file in the root directory.
+- Update the BASE_URL
+
+   ```bash
+   export const BASE_URL = "http://your_system_ip:backend_port";
+   ```
+
+5. **Run the App**
+
 - **On Emulator/Simulator:** Choose Run on Android device/emulator or Run on iOS simulator from the Expo Developer Tools.
 
 ## Technologies used

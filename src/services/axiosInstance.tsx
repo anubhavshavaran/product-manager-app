@@ -1,7 +1,8 @@
+import { BASE_URL } from '@/constants/ENV';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://192.168.223.187:3000',
+    baseURL: BASE_URL,
     responseType: 'json',
     responseEncoding: 'utf8',
     timeout: 5000,
